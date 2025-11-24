@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>PySpark Cheatsheet</title></head>
+
+<head>
+  <meta charset="UTF-8">
+  <title>PySpark Cheatsheet</title>
+</head>
+
 <body>
   <h1>PySpark Cheatsheet</h1>
 
@@ -66,5 +71,39 @@ res = spark.sql("SELECT name, age FROM tbl WHERE age > 20")</code></pre>
       </li>
     </ul>
   </section>
+  <section id="configuration">
+    <details>
+      <summary>Configuration</summary>
+    <ul>
+      <li>Pre Configuration for SparkSession Creation</li>
+      <pre>
+from pyspark.conf import SparkConf
+from pyspark.sql import SparkSession
+
+conf = SparkConf()
+conf.set("spark.executor.memory", "4g")
+conf.set("spark.app.name", "MySparkApp")
+
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
+      </pre>
+      <li>Configuration during SparkSession Creation</li>
+      <pre>
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("MySparkApp") \
+    .config("spark.executor.memory", "4g") \
+    .getOrCreate()
+      </pre>
+      <li>CLI</li>
+      <pre>spark-submit --conf spark.executor.memory=4g --conf spark.app.name=MySparkApp my_pyspark_script.py</pre>
+      <li>CLI with properties-file </li>
+      <pre>spark-submit --properties-file my_spark_config.properties my_pyspark_script.py</pre>
+
+
+    </ul>
+    </details>
+  </section>
 </body>
+
 </html>

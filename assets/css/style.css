@@ -179,7 +179,7 @@ main#content {
 
 
 /* Headings inside content */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, summary {
   color: var(--text-color);
 }
 
@@ -187,7 +187,7 @@ section {
   margin-bottom: 2em;
 }
 
-section h2 {
+section h2 summary {
   font-size: 1.4rem;
   padding-bottom: 8px;
   margin-bottom: 12px;
