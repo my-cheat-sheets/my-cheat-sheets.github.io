@@ -1,109 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>PySpark Cheatsheet</title>
-</head>
-
+<head><meta charset="UTF-8"><title>PySpark Complete Cheatsheet 2025</title></head>
 <body>
-  <h1>PySpark Cheatsheet</h1>
+<h1>⚡ PySpark Complete Cheatsheet 2025</h1>
 
-  <section id="basic">
-    <h2>Setup & DataFrame Creation</h2>
-    <ul>
-      <li><strong>Init SparkSession</strong><br>
-        <pre><code>from pyspark.sql import SparkSession
+<details open>
+<summary>🚀 PySpark - Setup & Initialization</summary>
+<ul>
+<ol>Basic SparkSession<code>from pyspark.sql import SparkSession
 spark = SparkSession.builder \
     .appName("MyApp") \
-    .getOrCreate()</code></pre>
-      </li>
-      <li><strong>Create DataFrame from list</strong><br>
-        <pre><code>data = [('Alice',25), ('Bob',30)]
-columns = ['name','age']
-df = spark.createDataFrame(data, columns)</code></pre>
-      </li>
-      <li><strong>Read CSV / JSON to DataFrame</strong><br>
-        <pre><code>df = spark.read.csv('data.csv', header=True, inferSchema=True)
-df = spark.read.json('data.json')</code></pre>
-      </li>
-    </ul>
-  </section>
-
-  <section id="advanced">
-    <h2>Operations — Select / Filter / Transform</h2>
-    <ul>
-      <li><strong>Select / Show / Print Schema</strong><br>
-        <pre><code>df.select('name','age').show()
-df.printSchema()</code></pre>
-      </li>
-      <li><strong>Filter / Where</strong><br>
-        <pre><code>from pyspark.sql.functions import col
-df2 = df.filter(col('age') > 25)</code></pre>
-      </li>
-      <li><strong>Add / Modify Column</strong><br>
-        <pre><code>from pyspark.sql.functions import upper
-df3 = df.withColumn('name_upper', upper(col('name')))</code></pre>
-      </li>
-      <li><strong>Group / Aggregation</strong><br>
-        <pre><code>from pyspark.sql.functions import avg, count
-df.groupBy('age').agg(count('*'), avg('age')).show()</code></pre>
-      </li>
-    </ul>
-  </section>
-
-  <section id="pro">
-    <h2>Advanced / Useful Patterns</h2>
-    <ul>
-      <li><strong>Convert to pandas (small data)</strong><br>
-        <pre><code>pdf = df.toPandas()</code></pre>
-      </li>
-      <li><strong>Save / Write DataFrame</strong><br>
-        <pre><code>df.write.parquet('output.parquet')
-df.write.json('output.json')</code></pre>
-      </li>
-      <li><strong>Run SQL on DataFrame</strong><br>
-        <pre><code>df.createOrReplaceTempView('tbl')
-res = spark.sql("SELECT name, age FROM tbl WHERE age > 20")</code></pre>
-      </li>
-      <li><strong>Stop SparkSession</strong><br>
-        <pre><code>spark.stop()</code></pre>
-      </li>
-    </ul>
-  </section>
-  <section id="configuration">
-    <details>
-      <summary>Configuration</summary>
-    <ul>
-      <li>Pre Configuration for SparkSession Creation</li>
-      <pre>
-from pyspark.conf import SparkConf
-from pyspark.sql import SparkSession
-
-conf = SparkConf()
-conf.set("spark.executor.memory", "4g")
-conf.set("spark.app.name", "MySparkApp")
-
-spark = SparkSession.builder.config(conf=conf).getOrCreate()
-      </pre>
-      <li>Configuration during SparkSession Creation</li>
-      <pre>
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder \
-    .appName("MySparkApp") \
+    .config("spark.sql.adaptive.enabled", "true") \
+    .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
+    .getOrCreate()</code></ol>
+<ol>Full Config<code>spark = SparkSession.builder \
+    .appName("PySparkApp") \
+    .master("local[*]") \
     .config("spark.executor.memory", "4g") \
-    .getOrCreate()
-      </pre>
-      <li>CLI</li>
-      <pre>spark-submit --conf spark.executor.memory=4g --conf spark.app.name=MySparkApp my_pyspark_script.py</pre>
-      <li>CLI with properties-file </li>
-      <pre>spark-submit --properties-file my_spark_config.properties my_pyspark_script.py</pre>
+    .config("spark.driver.memory", "2g") \
+    .config("spark.executor.cores", "2") \
+    .config("spark.sql.shuffle.partitions", "200") \
+    .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer") \
+    .config("spark.sql.adaptive.enabled", "true") \
+    .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
+    .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+    .getOrCreate()</code></ol>
+<ol>Stop Spark<code>spark.stop()</code></ol>
+</ul>
+</details>
 
+<details>
+<summary>📖 Core Imports & DataTypes</summary>
+<ul>
+<ol>Imports<code>from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
+from pyspark.sql import DataFrame</code></ol>
+<ol>DataTypes<code># Primitives
+IntegerType(), LongType(), FloatType(), DoubleType()
+StringType(), BooleanType(), TimestampType(), DateType()
 
-    </ul>
-    </details>
-  </section>
+# Complex
+StructType([StructField("name", StringType()), StructField("age", IntegerType())])
+ArrayType(StringType())
+MapType(StringType(), IntegerType())
+StructType(fields=[
+    StructField("address", StructType([
+        StructField("city", StringType()),
+        StructField("zip", StringType())
+    ]))
+])</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>📁 Reading & Writing Data</summary>
+<ul>
+<ol>CSV<code>df = spark.read \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .option("delimiter", ",") \
+    .csv("data.csv")
+
+df.write \
+    .mode("overwrite") \
+    .option("header", "true") \
+    .csv("output.csv")</code></ol>
+<ol>Parquet (Fastest)<code>df = spark.read.parquet("data.parquet")
+df.write.mode("overwrite").parquet("output.parquet")</code></ol>
+<ol>JSON<code>df = spark.read.option("multiline", "true").json("data.json")
+df.write.mode("overwrite").json("output.json")</code></ol>
+<ol>JDBC (Database)<code>df = spark.read \
+    .format("jdbc") \
+    .option("url", "jdbc:postgresql://host/db") \
+    .option("dbtable", "table") \
+    .option("user", "user") \
+    .option("password", "pass") \
+    .load()</code></ol>
+<ol>All Formats<code># Read
+spark.read.format("avro").load("data.avro")
+spark.read.format("orc").load("data.orc")
+spark.read.text("data.txt")
+spark.read.table("hive_table")
+
+# Write
+df.write.format("delta").mode("overwrite").save("delta_table")
+df.write.format("iceberg").mode("overwrite").save("iceberg_table")</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>🔍 DataFrame Operations</summary>
+<ul>
+<ol>Inspect<code>df.printSchema()
+df.show(20, truncate=False)
+df.describe().show()
+df.columns
+df.dtypes
+df.count()
+df.cache()
+df.explain()</code></ol>
+<ol>Select/Columns<code>df.select("name", "age")
+df.select(col("name"), col("age"))
+df.select("*").filter(col("age") > 25)
+df.drop("column1", "column2")
+df.withColumnRenamed("old", "new")</code></ol>
+<ol>Filter/Where<code>df.filter(col("age") > 25)
+df.filter((col("age") > 25) & (col("city") == "NYC"))
+df.where("age > 25 AND city = 'NYC'")
+df.filter(df.age > 25)</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>✨ SQL Functions (500+)</summary>
+<ul>
+<ol>Math<code>round(col("price"), 2)
+ceil(col("price")), floor(col("price"))
+abs(col("value")), sqrt(col("value"))
+rand(), randn()</code></ol>
+<ol>String<code>upper(col("name")), lower(col("name"))
+length(col("name")), substring(col("name"), 1, 3)
+concat(col("first"), lit("_"), col("last"))
+regexp_replace(col("email"), "@", "_")</code></ol>
+<ol>Date/Time<code>current_date(), current_timestamp()
+to_date(col("date_str"), "yyyy-MM-dd")
+date_format(col("date"), "yyyy-MM-dd")
+datediff(col("end"), col("start"))
+months_between(col("date1"), col("date2"))</code></ol>
+<ol>Aggregate<code>count("*"), count("col")
+sum("sales"), avg("price"), min("value"), max("value")
+stddev("price"), variance("price")
+collect_list("name"), collect_set("name")</code></ol>
+<ol>Window<code>from pyspark.sql.window import Window
+windowSpec = Window.partitionBy("dept").orderBy("salary")
+rank().over(windowSpec)
+row_number().over(windowSpec)
+lag("salary", 1).over(windowSpec)</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>⚙️ GroupBy & Aggregations</summary>
+<ul>
+<ol>Basic<code>df.groupBy("department").count()
+df.groupBy("department").agg(sum("salary").alias("total_salary"))</code></ol>
+<ol>Multiple<code>df.groupBy("dept", "year") \
+    .agg(
+        sum("sales").alias("total_sales"),
+        avg("profit").alias("avg_profit"),
+        count("*").alias("record_count")
+    )</code></ol>
+<ol>Pivot<code>df.groupBy("year").pivot("department").sum("sales").show()</code></ol>
+<ol>Cube/Rollup<code>df.groupBy("dept").cube("year").sum("sales")
+df.groupBy("dept").rollup("year").sum("sales")</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>🔗 Joins (All Types)</summary>
+<ul>
+<ol>Basic<code>df1.join(df2, "id", "inner")
+df1.join(df2, df1.id == df2.id, "inner")
+df1.join(df2, col("df1.id") == col("df2.id"), "left")</code></ol>
+<ol>All Types<code># inner, left, right, outer, left_anti, left_semi, cross
+df1.join(df2, "id", "left_outer")
+df1.join(df2, "id", "right_outer")
+df1.join(df2, "id", "full_outer")</code></ol>
+<ol>Broadcast Join (Small tables)<code>from pyspark.sql.functions import broadcast
+df1.join(broadcast(df2), "id")</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>📊 UDFs & Performance</summary>
+<ul>
+<ol>Pandas UDF (Vectorized)<code>from pyspark.sql.functions import pandas_udf
+@pandas_udf("double")
+def pandas_plus_one(v: pd.Series) -> pd.Series:
+    return v + 1
+df.withColumn("new_col", pandas_plus_one(df.col))</code></ol>
+<ol>Regular UDF<code>from pyspark.sql.functions import udf
+double_udf = udf(lambda x: x * 2, DoubleType())
+df.withColumn("doubled", double_udf(df.value))</code></ol>
+<ol>Configs (Performance)<code># Memory & Partitioning
+spark.conf.set("spark.sql.adaptive.enabled", "true")
+spark.conf.set("spark.sql.shuffle.partitions", "200")
+spark.conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+
+# Arrow Optimization
+spark.conf.set("spark.sql.execution.arrow.pyspark.enabled", "true")
+spark.conf.set("spark.sql.execution.arrow.maxRecordsPerBatch", "10000")</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>🗄️ Delta Lake (ACID Tables)</summary>
+<ul>
+<ol>Basic<code>df.write.format("delta").mode("overwrite").save("delta_table")
+spark.read.format("delta").load("delta_table")</code></ol>
+<ol>Operations<code># Time Travel
+spark.read.format("delta").option("versionAsOf", 5).load("table")
+
+# Merge (UPSERT)
+delta_table = DeltaTable.forPath(spark, "delta_table")
+delta_table.alias("target") \
+    .merge(updates.alias("source"), "target.id = source.id") \
+    .whenMatchedUpdateAll() \
+    .whenNotMatchedInsertAll() \
+    .execute()</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>⚡ Spark SQL & Optimization</summary>
+<ul>
+<ol>Register Table<code>df.createOrReplaceTempView("my_table")
+spark.sql("SELECT * FROM my_table WHERE age > 25").show()</code></ol>
+<ol>Advanced SQL<code># Window Functions
+spark.sql("""
+    SELECT 
+        dept, 
+        salary,
+        rank() OVER (PARTITION BY dept ORDER BY salary DESC) as salary_rank
+    FROM employees
+""").show()</code></ol>
+<ol>Cache/Persist<code>df.cache()  # MEMORY_ONLY
+df.persist(StorageLevel.MEMORY_AND_DISK)
+df.unpersist()</code></ol>
+</ul>
+</details>
+
+<details>
+<summary>🔧 All Spark Configs (Production)</summary>
+<table border="1" style="border-collapse:collapse;">
+<tr><th>Config</th><th>Type</th><th>Default</th><th>Purpose</th></tr>
+<tr><td>spark.sql.adaptive.enabled</td><td>boolean</td><td>false</td><td>Adaptive Query Execution</td></tr>
+<tr><td>spark.sql.shuffle.partitions</td><td>int</td><td>200</td><td>Shuffle partitions</td></tr>
+<tr><td>spark.executor.memory</td><td>string</td><td>1g</td><td>Executor memory</td></tr>
+<tr><td>spark.executor.cores</td><td>int</td><td>1</td><td>Executor cores</td></tr>
+<tr><td>spark.sql.execution.arrow.pyspark.enabled</td><td>boolean</td><td>false</td><td>Arrow optimization</td></tr>
+<tr><td>spark.serializer</td><td>string</td><td>JavaSerializer</td><td>KryoSerializer (faster)</td></tr>
+<tr><td>spark.sql.adaptive.coalescePartitions.enabled</td><td>boolean</td><td>true</td><td>Auto coalesce</td></tr>
+</table>
+</details>
+
 </body>
-
 </html>

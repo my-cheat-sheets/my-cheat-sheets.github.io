@@ -11,15 +11,15 @@
   <section id="basic">
     <h2>Basic</h2>
     <ul>
-      <li><strong>Create / Drop Database</strong>
+      <ol><strong>Create / Drop Database</strong>
         <pre><code>
 CREATE DATABASE company;
 USE company;
 
 DROP DATABASE company;
         </code></pre>
-      </li>
-      <li><strong>Create / Drop / Alter Table</strong>
+      </ol>
+      <ol><strong>Create / Drop / Alter Table</strong>
         <pre><code>
 CREATE TABLE employees (
     id INT PRIMARY KEY,
@@ -32,8 +32,8 @@ ALTER TABLE employees ADD COLUMN salary DECIMAL(10,2);
 
 DROP TABLE employees;
         </code></pre>
-      </li>
-      <li><strong>Select / Insert / Update / Delete</strong>
+      </ol>
+      <ol><strong>Select / Insert / Update / Delete</strong>
         <pre><code>
 -- Select all columns
 SELECT * FROM employees;
@@ -50,8 +50,8 @@ UPDATE employees SET age = 29 WHERE name = 'John';
 -- Delete
 DELETE FROM employees WHERE age < 25;
         </code></pre>
-      </li>
-      <li><strong>Filtering & Sorting</strong>
+      </ol>
+      <ol><strong>Filtering & Sorting</strong>
         <pre><code>
 SELECT name, department
 FROM employees
@@ -60,8 +60,8 @@ ORDER BY age DESC;
 
 SELECT DISTINCT department FROM employees;
         </code></pre>
-      </li>
-      <li><strong>Limit / Offset</strong>
+      </ol>
+      <ol><strong>Limit / Offset</strong>
         <pre><code>
 -- PostgreSQL / MySQL / SQLite style:
 SELECT * FROM employees LIMIT 10 OFFSET 5;
@@ -69,7 +69,7 @@ SELECT * FROM employees LIMIT 10 OFFSET 5;
 -- SQL Server style (T‑SQL):
 SELECT TOP 10 * FROM employees;
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 
@@ -77,7 +77,7 @@ SELECT TOP 10 * FROM employees;
   <section id="advanced">
     <h2>Advanced</h2>
     <ul>
-      <li><strong>JOINs (INNER, LEFT, RIGHT, FULL)</strong>
+      <ol><strong>JOINs (INNER, LEFT, RIGHT, FULL)</strong>
         <pre><code>
 SELECT e.name, d.name AS dept_name
 FROM employees e
@@ -87,24 +87,24 @@ SELECT e.name, d.name
 FROM employees e
 LEFT JOIN departments d ON e.dept_id = d.id;
         </code></pre>
-      </li>
-      <li><strong>GROUP BY + Aggregation</strong>
+      </ol>
+      <ol><strong>GROUP BY + Aggregation</strong>
         <pre><code>
 SELECT department, COUNT(*) AS num_employees, AVG(salary) AS avg_salary
 FROM employees
 GROUP BY department
 HAVING COUNT(*) > 5;
         </code></pre>
-      </li>
-      <li><strong>Subqueries & Nested Queries</strong>
+      </ol>
+      <ol><strong>Subqueries & Nested Queries</strong>
         <pre><code>
 SELECT name FROM employees 
 WHERE dept_id IN (
     SELECT id FROM departments WHERE name = 'IT'
 );
         </code></pre>
-      </li>
-      <li><strong>Views</strong>
+      </ol>
+      <ol><strong>Views</strong>
         <pre><code>
 CREATE VIEW it_employees AS
 SELECT name, age, department
@@ -114,8 +114,8 @@ WHERE department = 'IT';
 -- Use view:
 SELECT * FROM it_employees;
         </code></pre>
-      </li>
-      <li><strong>Transactions & Rollback / Commit</strong>
+      </ol>
+      <ol><strong>Transactions & Rollback / Commit</strong>
         <pre><code>
 START TRANSACTION;
 
@@ -127,7 +127,7 @@ COMMIT;
 -- if something fails:
 ROLLBACK;
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 
@@ -135,14 +135,14 @@ ROLLBACK;
   <section id="pro">
     <h2>Pro / Advanced‑2</h2>
     <ul>
-      <li><strong>Window Functions (PostgreSQL / SQL Server / etc.)</strong>
+      <ol><strong>Window Functions (PostgreSQL / SQL Server / etc.)</strong>
         <pre><code>
 SELECT name, salary,
        RANK() OVER (ORDER BY salary DESC) AS salary_rank
 FROM employees;
         </code></pre>
-      </li>
-      <li><strong>Common Table Expressions (CTE)</strong>
+      </ol>
+      <ol><strong>Common Table Expressions (CTE)</strong>
         <pre><code>
 WITH dept_count AS (
     SELECT dept_id, COUNT(*) AS emp_count
@@ -153,8 +153,8 @@ SELECT d.name, dc.emp_count
 FROM departments d
 JOIN dept_count dc ON d.id = dc.dept_id;
         </code></pre>
-      </li>
-      <li><strong>Stored Procedures / Functions (example syntax)</strong>
+      </ol>
+      <ol><strong>Stored Procedures / Functions (example syntax)</strong>
         <pre><code>
 -- MySQL syntax
 DELIMITER //
@@ -169,8 +169,8 @@ DELIMITER ;
 -- Call procedure
 CALL add_employee('Alice', 30, 'HR');
         </code></pre>
-      </li>
-      <li><strong>Indexing & Performance Hints</strong>
+      </ol>
+      <ol><strong>Indexing & Performance Hints</strong>
         <pre><code>
 -- Create index
 CREATE INDEX idx_dept ON employees(department);
@@ -178,8 +178,8 @@ CREATE INDEX idx_dept ON employees(department);
 -- Use index (implicitly)
 SELECT * FROM employees WHERE department = 'IT';
         </code></pre>
-      </li>
-      <li><strong>Set Operations: UNION / INTERSECT / EXCEPT (or MINUS)</strong>
+      </ol>
+      <ol><strong>Set Operations: UNION / INTERSECT / EXCEPT (or MINUS)</strong>
         <pre><code>
 SELECT name FROM employees WHERE age < 30
 UNION
@@ -198,7 +198,7 @@ SELECT name FROM dept1
 EXCEPT
 SELECT name FROM dept2;
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 </body>

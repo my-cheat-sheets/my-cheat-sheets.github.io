@@ -11,10 +11,10 @@
   <section id="basic">
     <h2>Basic</h2>
     <ul>
-      <li><strong>Hello World</strong>
+      <ol><strong>Hello World</strong>
         <pre><code>print("Hello, World!")</code></pre>
-      </li>
-      <li><strong>Variables & Data Types</strong>
+      </ol>
+      <ol><strong>Variables & Data Types</strong>
         <pre><code>
 x = 10              # int
 name = "Alice"      # str
@@ -22,8 +22,8 @@ pi = 3.14           # float
 is_ready = True     # bool
 nothing = None      # NoneType
         </code></pre>
-      </li>
-      <li><strong>Basic Math & Operators</strong>
+      </ol>
+      <ol><strong>Basic Math & Operators</strong>
         <pre><code>
 a = 5
 b = 2
@@ -35,8 +35,8 @@ print(a // b)  # 2   (integer division)
 print(a % b)   # 1   (modulus)
 print(a ** b)  # 25  (power)
         </code></pre>
-      </li>
-      <li><strong>Conditional Statements</strong>
+      </ol>
+      <ol><strong>Conditional Statements</strong>
         <pre><code>
 if x > 0:
     print("Positive")
@@ -45,8 +45,8 @@ elif x == 0:
 else:
     print("Negative")
         </code></pre>
-      </li>
-      <li><strong>Loops — for / while</strong>
+      </ol>
+      <ol><strong>Loops — for / while</strong>
         <pre><code>
 # for loop
 for i in range(5):
@@ -58,21 +58,21 @@ while count < 3:
     print("Count:", count)
     count += 1
         </code></pre>
-      </li>
-      <li><strong>Functions</strong>
+      </ol>
+      <ol><strong>Functions</strong>
         <pre><code>
 def greet(name):
     print("Hello", name)
 
 greet("Bob")
         </code></pre>
-      </li>
-      <li><strong>Input / Output</strong>
+      </ol>
+      <ol><strong>Input / Output</strong>
         <pre><code>
 name = input("Enter your name: ")
 print("Hi, " + name)
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 
@@ -80,7 +80,7 @@ print("Hi, " + name)
   <section id="advanced">
     <h2>Advanced</h2>
     <ul>
-      <li><strong>Lists, Tuples, Dictionaries, Sets</strong>
+      <ol><strong>Lists, Tuples, Dictionaries, Sets</strong>
         <pre><code>
 # List (mutable)
 fruits = ["apple", "banana", "cherry"]
@@ -98,8 +98,8 @@ print(person["name"])
 unique = {1, 2, 3, 2}
 print(unique)  # {1, 2, 3}
         </code></pre>
-      </li>
-      <li><strong>List / Dict / Set Comprehension</strong>
+      </ol>
+      <ol><strong>List / Dict / Set Comprehension</strong>
         <pre><code>
 # List comprehension
 squares = [x*x for x in range(10) if x % 2 == 0]
@@ -111,8 +111,8 @@ lengths = {n: len(n) for n in names}
 # Set comprehension
 unique_first = {name[0] for name in names}
         </code></pre>
-      </li>
-      <li><strong>Lambda, Map, Filter, Reduce</strong>
+      </ol>
+      <ol><strong>Lambda, Map, Filter, Reduce</strong>
         <pre><code>
 # Lambda
 square = lambda x: x*x
@@ -128,8 +128,8 @@ evens = list(filter(lambda x: x % 2 == 0, nums))
 from functools import reduce
 sum_all = reduce(lambda a, b: a + b, nums)
         </code></pre>
-      </li>
-      <li><strong>String Methods</strong>
+      </ol>
+      <ol><strong>String Methods</strong>
         <pre><code>
 s = "  Hello World  "
 print(s.strip())        # "Hello World"
@@ -138,8 +138,8 @@ print(s.lower())        # "  hello world  "
 print(s.split())        # ['Hello', 'World']
 print("-".join(["a","b","c"]))  # "a-b-c"
         </code></pre>
-      </li>
-      <li><strong>Exception Handling</strong>
+      </ol>
+      <ol><strong>Exception Handling</strong>
         <pre><code>
 try:
     val = int("abc")
@@ -150,8 +150,8 @@ else:
 finally:
     print("Done")
         </code></pre>
-      </li>
-      <li><strong>File I/O</strong>
+      </ol>
+      <ol><strong>File I/O</strong>
         <pre><code>
 # Writing to a file
 with open("data.txt", "w", encoding="utf-8") as f:
@@ -162,8 +162,8 @@ with open("data.txt", "r", encoding="utf-8") as f:
     content = f.read()
 print(content)
         </code></pre>
-      </li>
-      <li><strong>Modules & Imports</strong>
+      </ol>
+      <ol><strong>Modules & Imports</strong>
         <pre><code>
 import math
 print(math.sqrt(16))  # 4.0
@@ -171,7 +171,7 @@ print(math.sqrt(16))  # 4.0
 from datetime import date
 print(date.today())
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 
@@ -179,7 +179,7 @@ print(date.today())
   <section id="pro">
     <h2>Pro / Advanced‑2</h2>
     <ul>
-      <li><strong>Generators & Generator Expressions</strong>
+      <ol><strong>Generators & Generator Expressions</strong>
         <pre><code>
 def gen(n):
     for i in range(n):
@@ -191,8 +191,8 @@ for value in gen(5):
 # Generator expression
 squares_gen = (x*x for x in range(5))
         </code></pre>
-      </li>
-      <li><strong>Decorators</strong>
+      </ol>
+      <ol><strong>Decorators</strong>
         <pre><code>
 def logger(func):
     def wrapper(*args, **kwargs):
@@ -208,15 +208,15 @@ def add(a, b):
 
 print(add(3, 4))
         </code></pre>
-      </li>
-      <li><strong>Context Managers</strong>
+      </ol>
+      <ol><strong>Context Managers</strong>
         <pre><code>
 with open("data.txt") as f:
     data = f.read()
 print(data)
         </code></pre>
-      </li>
-      <li><strong>Async / Await (basic)</strong>
+      </ol>
+      <ol><strong>Async / Await (basic)</strong>
         <pre><code>
 import asyncio
 
@@ -230,8 +230,8 @@ async def main():
 
 asyncio.run(main())
         </code></pre>
-      </li>
-      <li><strong>Dataclasses (3.7+)</strong>
+      </ol>
+      <ol><strong>Dataclasses (3.7+)</strong>
         <pre><code>
 from dataclasses import dataclass
 
@@ -243,8 +243,8 @@ class Point:
 p = Point(2, 3)
 print(p)  # Point(x=2, y=3)
         </code></pre>
-      </li>
-      <li><strong>List & Dict Useful Methods</strong>
+      </ol>
+      <ol><strong>List & Dict Useful Methods</strong>
         <pre><code>
 nums = [5, 3, 9, 1]
 nums.sort()              # sorts list
@@ -254,7 +254,7 @@ d = {"a":1, "b":2, "c":3}
 for key, value in d.items():
     print(key, value)
         </code></pre>
-      </li>
+      </ol>
     </ul>
   </section>
 </body>
