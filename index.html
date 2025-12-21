@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cheatsheets Hub</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Apply dark mode immediately to prevent flash
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
 </head>
 
 <body>
@@ -13,38 +19,48 @@
     <div class="nav-container">
       <nav class="navbar">
         <div class="nav-container">
-          <div class="brand"><a href="#">My Cheat Sheets</a></div>
+          <div class="brand"><a href="index.html">My Cheat Sheets</a></div>
           <div class="menu-toggle" id="mobile-menu">☰</div>
           <ul class="nav-menu" id="main-nav"> <!-- give an id to nav-menu -->
 
-            <ol class="dropdown">
+            <li class="dropdown">
               <a href="#">Databases ▾</a>
               <ul class="dropdown-menu">
-                <ol><a href="#cheat=databricks&category=databases">Databricks</a></ol>
+                <ol><a href="#cheat=drift&category=databases">Drift Database (Flutter)</a></ol>
+                <ol><a href="#cheat=duckdb&category=databases">Duck DB</a></ol>
                 <ol><a href="#cheat=mysql&category=databases">MySQL / SQL</a></ol>
                 <ol><a href="#cheat=mongodb&category=databases">MongoDB</a></ol>
                 <ol><a href="#cheat=postgresql&category=databases">PostgreSQL</a></ol>
+                <ol><a href="#cheat=sqlalchemy&category=databases">SQLAlchemy</a></ol>`
               </ul>
-            </ol>
-            <ol class="dropdown">
+            </li>
+            <li class="dropdown">
+              <a href="#">Tools ▾</a>
+              <ul class="dropdown-menu">
+                <ol><a href="#cheat=databricks&category=tools">Databricks</a></ol>
+              </ul>
+            </li>
+            <li class="dropdown">
               <a href="#">Frameworks / Libs ▾</a>
               <ul class="dropdown-menu">
-                <ol><a href="#cheat=databricks&category=databases">Databricks</a></ol>
                 <ol><a href="#cheat=pandas_numpy&category=frameworks">Pandas & NumPy</a></ol>
                 <ol><a href="#cheat=pyspark&category=frameworks">PySpark</a></ol>
-                <ol><a href="#cheat=sqlalchemy&category=frameworks">SQLAlchemy</a></ol>
               </ul>
-            </ol>
-            <ol class="dropdown">
+            </li>
+            <li class="dropdown">
               <a href="#">Languages ▾</a>
               <ul class="dropdown-menu">
                 <ol><a href="#cheat=css&category=languages">CSS</a></ol>
+                <ol><a href="#cheat=flutter&category=languages">Flutter</a></ol>
                 <ol><a href="#cheat=html&category=languages">HTML</a></ol>
                 <ol><a href="#cheat=javascript&category=languages">JavaScript</a></ol>
                 <ol><a href="#cheat=python&category=languages">Python</a></ol>
                 <ol><a href="#cheat=sql&category=languages">SQL</a></ol>
               </ul>
-            </ol>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="repo_map.md">Repository Map</a></li>
           </ul>
         </div>
       </nav>
@@ -54,9 +70,263 @@
   </header>
 
   <main id="content">
-    <div class="welcome">
-      <h1>Welcome to Cheatsheets Hub</h1>
-      <p>Select a language from the navigation menu to view cheatsheet.</p>
+    <div class="landing-page">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <h1 class="hero-title">Welcome to Cheatsheets Hub</h1>
+        <p class="hero-subtitle">Your comprehensive reference guide for programming languages, frameworks, and tools</p>
+        <p class="hero-description">Explore cheatsheets, code snippets, and quick references to boost your development workflow</p>
+      </section>
+
+      <!-- Hello World Section -->
+      <section class="hello-world-section">
+        <div class="section-header">
+          <h2>Hello World in All Programming Languages</h2>
+          <p class="section-description">Print "Hello World, Welcome to Cheatsheets" across different programming languages</p>
+        </div>
+        
+        <div class="code-grid">
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Python</span>
+            </div>
+            <pre><code>print("Hello World, Welcome to Cheatsheets")</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">JavaScript</span>
+            </div>
+            <pre><code>console.log("Hello World, Welcome to Cheatsheets");</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Java</span>
+            </div>
+            <pre><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World, Welcome to Cheatsheets");
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">C++</span>
+            </div>
+            <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout << "Hello World, Welcome to Cheatsheets" << endl;
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">C</span>
+            </div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello World, Welcome to Cheatsheets\n");
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">C#</span>
+            </div>
+            <pre><code>using System;
+
+class Program {
+    static void Main() {
+        Console.WriteLine("Hello World, Welcome to Cheatsheets");
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">PHP</span>
+            </div>
+            <pre><code>&lt;?php
+echo "Hello World, Welcome to Cheatsheets";
+?&gt;</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Ruby</span>
+            </div>
+            <pre><code>puts "Hello World, Welcome to Cheatsheets"</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Go</span>
+            </div>
+            <pre><code>package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World, Welcome to Cheatsheets")
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Rust</span>
+            </div>
+            <pre><code>fn main() {
+    println!("Hello World, Welcome to Cheatsheets");
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Swift</span>
+            </div>
+            <pre><code>print("Hello World, Welcome to Cheatsheets")</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Kotlin</span>
+            </div>
+            <pre><code>fun main() {
+    println("Hello World, Welcome to Cheatsheets")
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Dart</span>
+            </div>
+            <pre><code>void main() {
+    print('Hello World, Welcome to Cheatsheets');
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">TypeScript</span>
+            </div>
+            <pre><code>console.log("Hello World, Welcome to Cheatsheets");</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">R</span>
+            </div>
+            <pre><code>cat("Hello World, Welcome to Cheatsheets\n")</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">MATLAB</span>
+            </div>
+            <pre><code>disp('Hello World, Welcome to Cheatsheets')</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Perl</span>
+            </div>
+            <pre><code>print "Hello World, Welcome to Cheatsheets\n";</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Scala</span>
+            </div>
+            <pre><code>object HelloWorld {
+    def main(args: Array[String]): Unit = {
+        println("Hello World, Welcome to Cheatsheets")
+    }
+}</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">Bash</span>
+            </div>
+            <pre><code>echo "Hello World, Welcome to Cheatsheets"</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">PowerShell</span>
+            </div>
+            <pre><code>Write-Host "Hello World, Welcome to Cheatsheets"</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">SQL</span>
+            </div>
+            <pre><code>SELECT 'Hello World, Welcome to Cheatsheets' AS greeting;</code></pre>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="language-name">HTML</span>
+            </div>
+            <pre><code>&lt;h1&gt;Hello World, Welcome to Cheatsheets&lt;/h1&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section class="contact-section">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+          <p class="section-description">Have questions, suggestions, or found an error? We'd love to hear from you!</p>
+        </div>
+        
+        <div class="contact-form-container">
+          <!-- 
+            To get your Web3Forms access key:
+            1. Visit https://web3forms.com
+            2. Enter your email address
+            3. Get your free access key
+            4. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with your actual key
+          -->
+          <form id="contact-form" class="contact-form">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New Contact Form Submission from Cheatsheets Hub">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="6" required placeholder="Your message..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <button type="submit" class="submit-btn">
+                <span class="btn-text">Send Message</span>
+                <span class="btn-loader" style="display: none;">Sending...</span>
+              </button>
+            </div>
+            
+            <div id="form-status" class="form-status"></div>
+          </form>
+        </div>
+      </section>
     </div>
   </main>
 
