@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>DuckDB Complete Cheatsheet 2025</title>
+  <title>DuckDB Complete Cheatsheet</title>
 </head>
 
 <body>
-  <h1>🦆 DuckDB Complete Cheatsheet 2025</h1>
+  <h1>🦆 DuckDB Complete Cheatsheet</h1>
 
   <details open>
     <summary>🚀 Install & Connect</summary>
@@ -215,7 +215,7 @@ SET s3_secret_access_key = 'YOUR_SECRET';
 
 SELECT *
 FROM 's3://bucket/path/data_*.parquet'
-WHERE event_date &gt;= '2025-01-01';</code></pre>
+WHERE event_date &gt;= '2026-01-01';</code></pre>
       </li>
     </ul>
   </details>
@@ -258,8 +258,8 @@ VARCHAR, DATE, TIMESTAMP, INTERVAL</code></pre>
       </li>
       <li>Casting & Date Functions
         <pre><code>SELECT
-  CAST('2025-01-01' AS DATE)         AS d,
-  CAST('2025-01-01 12:00' AS TIMESTAMP) AS ts,
+  CAST('2026-01-01' AS DATE)         AS d,
+  CAST('2026-01-01 12:00' AS TIMESTAMP) AS ts,
   DATE_TRUNC('month', ts)            AS month,
   AGE(ts, d)                         AS diff;
 
