@@ -9,7 +9,8 @@
 <body>
   <h1>PostgreSQL Cheatsheet</h1>
 
-  <section id="basic">
+  <details open>
+    <summary>basic</summary>
     <h2>Basic / DDL & DML</h2>
     <ul>
       <ol><strong>Create Database:</strong>
@@ -41,9 +42,10 @@ CREATE TABLE users (
         <pre><code>DELETE FROM users WHERE id = 5;</code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
 
-  <section id="advanced">
+  <details>
+    <summary>advanced</summary>
     <h2>Advanced Queries & Features</h2>
     <ul>
       <ol><strong>Aggregate + GROUP BY:</strong>
@@ -90,9 +92,10 @@ VALUES ('{"theme":"dark","lang":"en"}', ARRAY['web','api']);
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
 
-  <section id="pro">
+  <details>
+    <summary>pro</summary>
     <h2>Pro / Advanced‑2</h2>
     <ul>
       <ol><strong>Upsert / On Conflict:</strong>
@@ -124,21 +127,23 @@ CREATE INDEX idx_users_age ON users(age);
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
   <!-- References Section -->
-  <section id="references">
+  <details>
+    <summary>references</summary>
     <h2>References</h2>
     <ul>
       <li><a href="https://www.postgresql.org/docs/" target="_blank">PostgreSQL Documentation</a></li>
     </ul>
-  </section>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup & Verification</h2>
     <p>Check if psql is installed:</p>
     <pre><code>psql --version</code></pre>
-  </section>
+  </details>
 </body>
 
 </html>

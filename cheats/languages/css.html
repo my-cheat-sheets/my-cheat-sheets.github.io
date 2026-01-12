@@ -9,12 +9,13 @@
 <body>
   <h1>CSS Cheatsheet</h1>
 
-  <section id="basic">
-    <h2>Basic</h2>
-    <ul>
-      <ol><strong>Selectors:</strong> `element`, `.class`, `#id`, `tag.class`</ol>
-      <ol><strong>Box model:</strong>
-        <pre><code>
+  <details open>
+    <summary>basic">
+      <h2>Basic</h2>
+      <ul>
+        <ol><strong>Selectors:</strong> `element`, `.class`, `#id`, `tag.class`</ol>
+        <ol><strong>Box model:</strong>
+          <pre><code>
 div {
   width: 200px;
   padding: 10px;
@@ -22,40 +23,43 @@ div {
   margin: 20px;
 }
         </code></pre>
-      </ol>
-      <ol><strong>Flexbox (container):</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Flexbox (container):</strong>
+          <pre><code>
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
         </code></pre>
-      </ol>
-      <ol><strong>Flexbox (child):</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Flexbox (child):</strong>
+          <pre><code>
 .child {
   flex: 1; /* grow to fill space */
 }
         </code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+      </ul>
+  </details>
 
   <!-- Advanced / Pro sections: grid, animations, media queries etc. -->
   <!-- References Section -->
-  <section id="references">
+  <details>
+    <summary>references</summary>
     <h2>References</h2>
     <ul>
       <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN Web Docs - CSS</a></li>
     </ul>
-  </section>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup & Verification</h2>
-    <p>CSS is used to style HTML. Link a <code>style.css</code> file in your HTML <code>&lt;head&gt;</code>.</p>
-  </section>
+    <p>CSS is used to style HTML. Link a <code>style.css</code> file in your HTML <code>&lt;head&gt;</code>.
+    </p>
+  </details>
 </body>
 
 </html>

@@ -9,11 +9,12 @@
 <body>
     <h1>PySpark Config Cheatsheet</h1>
 
-    <section id="session">
-        <h2>Spark Session & Basic Config</h2>
-        <ul>
-            <ol><strong>SparkSession Builder</strong>
-                <pre><code class="language-python">
+    <details open>
+        <summary>session">
+            <h2>Spark Session & Basic Config</h2>
+            <ul>
+                <ol><strong>SparkSession Builder</strong>
+                    <pre><code class="language-python">
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder \
@@ -22,9 +23,9 @@ spark = SparkSession.builder \
     .config("spark.some.config.option", "some-value") \
     .getOrCreate()
                 </code></pre>
-            </ol>
-            <ol><strong>Common Properties</strong>
-                <pre><code class="language-properties">
+                </ol>
+                <ol><strong>Common Properties</strong>
+                    <pre><code class="language-properties">
 # Application Name
 spark.app.name = MySparkApp
 
@@ -40,22 +41,23 @@ spark.executor.memory = 8g
 # Executor Cores (Number of cores to use on each executor)
 spark.executor.cores = 4
                 </code></pre>
-            </ol>
-        </ul>
-    </section>
+                </ol>
+            </ul>
 
-    <section id="tuning">
-        <h2>Performance Tuning</h2>
-        <ul>
-            <ol><strong>Shuffle Partitions</strong>
-                <pre><code class="language-properties">
+
+            <details>
+                <summary>tuning">
+                    <h2>Performance Tuning</h2>
+                    <ul>
+                        <ol><strong>Shuffle Partitions</strong>
+                            <pre><code class="language-properties">
 # Default is 200. Adjust based on data size.
 # Too high = overhead, Too low = skew/OOM.
 spark.sql.shuffle.partitions = 500
                 </code></pre>
-            </ol>
-            <ol><strong>Dynamic Allocation</strong>
-                <pre><code class="language-properties">
+                        </ol>
+                        <ol><strong>Dynamic Allocation</strong>
+                            <pre><code class="language-properties">
 # Scales executors up and down based on workload
 spark.dynamicAllocation.enabled = true
 spark.dynamicAllocation.minExecutors = 2
@@ -63,9 +65,9 @@ spark.dynamicAllocation.maxExecutors = 50
 spark.dynamicAllocation.initialExecutors = 5
 spark.shuffle.service.enabled = true
                 </code></pre>
-            </ol>
-            <ol><strong>Memory Management</strong>
-                <pre><code class="language-properties">
+                        </ol>
+                        <ol><strong>Memory Management</strong>
+                            <pre><code class="language-properties">
 # Fraction of heap used for execution and storage (Unified Memory) (default 0.6)
 spark.memory.fraction = 0.75
 
@@ -76,52 +78,56 @@ spark.memory.storageFraction = 0.5
 spark.memory.offHeap.enabled = true
 spark.memory.offHeap.size = 2g
                 </code></pre>
-            </ol>
-            <ol><strong>Serialization</strong>
-                <pre><code class="language-properties">
+                        </ol>
+                        <ol><strong>Serialization</strong>
+                            <pre><code class="language-properties">
 # Use Kryo serialization for better performance than Java serialization
 spark.serializer = org.apache.spark.serializer.KryoSerializer
 spark.kryo.registrationRequired = false
                 </code></pre>
-            </ol>
-            <ol><strong>Adaptive Query Execution (AQE) - Spark 3.0+</strong>
-                <pre><code class="language-properties">
+                        </ol>
+                        <ol><strong>Adaptive Query Execution (AQE) - Spark 3.0+</strong>
+                            <pre><code class="language-properties">
 spark.sql.adaptive.enabled = true
 spark.sql.adaptive.coalescePartitions.enabled = true
 spark.sql.adaptive.skewJoin.enabled = true
                 </code></pre>
-            </ol>
-        </ul>
-    </section>
+                        </ol>
+                    </ul>
 
-    <section id="ui-logging">
-        <h2>UI & Logging</h2>
-        <ul>
-            <ol><strong>Event Log</strong>
-                <pre><code class="language-properties">
+
+                    <details>
+                        <summary>ui-logging">
+                            <h2>UI & Logging</h2>
+                            <ul>
+                                <ol><strong>Event Log</strong>
+                                    <pre><code class="language-properties">
 # Enable event logging for History Server
 spark.eventLog.enabled = true
 spark.eventLog.dir = hdfs:///var/log/spark
                 </code></pre>
-            </ol>
-            <ol><strong>UI Port</strong>
-                <pre><code class="language-properties">
+                                </ol>
+                                <ol><strong>UI Port</strong>
+                                    <pre><code class="language-properties">
 # Default 4040. If occupied, tries 4041, 4042...
 spark.ui.port = 4050
                 </code></pre>
-            </ol>
-        </ul>
-    </section>
+                                </ol>
+                            </ul>
 
-    <section id="references">
-        <h2>References</h2>
-        <ul>
-            <li><a href="https://spark.apache.org/docs/latest/configuration.html" target="_blank">Spark Configuration
-                    Docs</a></li>
-            <li><a href="https://spark.apache.org/docs/latest/sql-performance-tuning.html" target="_blank">Spark
-                    Performance Tuning</a></li>
-        </ul>
-    </section>
+
+                            <details open>
+                                <summary>references">
+                                    <h2>References</h2>
+                                    <ul>
+                                        <li><a href="https://spark.apache.org/docs/latest/configuration.html"
+                                                target="_blank">Spark Configuration
+                                                Docs</a></li>
+                                        <li><a href="https://spark.apache.org/docs/latest/sql-performance-tuning.html"
+                                                target="_blank">Spark
+                                                Performance Tuning</a></li>
+                                    </ul>
+
 </body>
 
 </html>

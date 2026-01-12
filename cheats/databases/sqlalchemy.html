@@ -9,7 +9,8 @@
 <body>
   <h1>SQLAlchemy Cheatsheet</h1>
 
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup / Engine / Session / Core</h2>
     <pre><code>
 from sqlalchemy import create_engine
@@ -28,9 +29,11 @@ session = SessionLocal()
 # Create tables
 Base.metadata.create_all(engine)
     </code></pre>
-  </section>
+  </details>
 
-  <section id="core-sql">
+  <details>
+    <summary>core-sql</summary>
+
     <h2>Core / Raw SQL / Expression Language</h2>
     <pre><code>
 from sqlalchemy import MetaData, Table, Column, Integer, String, insert, select, update, delete
@@ -55,9 +58,10 @@ stmt = select(users).where(users.c.age > 20)
 for row in engine.execute(stmt):
     print(row)
     </code></pre>
-  </section>
+  </details>
 
-  <section id="models">
+  <details>
+    <summary>models</summary>
     <h2>ORM – Model Definition & Relationships</h2>
     <pre><code>
 class User(Base):
@@ -75,9 +79,10 @@ class Address(Base):
 
 User.addresses = relationship("Address", back_populates="user", cascade="all, delete-orphan")
     </code></pre>
-  </section>
+  </details>
 
-  <section id="crud">
+  <details>
+    <summary>crud</summary>
     <h2>CRUD – Create, Read, Update, Delete (ORM)</h2>
     <pre><code>
 # Create
@@ -97,9 +102,10 @@ session.commit()
 session.delete(user)
 session.commit()
     </code></pre>
-  </section>
+  </details>
 
-  <section id="joins-and-subquery">
+  <details>
+    <summary>joins-and-subquery</summary>
     <h2>Joins, Aggregations, Subqueries & Advanced Queries</h2>
     <pre><code>
 from sqlalchemy import func, select
@@ -114,9 +120,10 @@ count = session.query(func.count(User.id)).scalar()
 subq = session.query(Address.user_id).filter(Address.email.like('%@example.com')).subquery()
 users = session.query(User).filter(User.id.in_(subq)).all()
     </code></pre>
-  </section>
+  </details>
 
-  <section id="bulk-and-raw">
+  <details>
+    <summary>bulk-and-raw</summary>
     <h2>Bulk / Raw SQL / Mixed Use</h2>
     <pre><code>
 # Bulk insert
@@ -131,24 +138,27 @@ result = session.execute("SELECT * FROM users WHERE age > :age", {'age': 20})
 for row in result:
     print(row)
     </code></pre>
-  </section>
+  </details>
 
   <!-- Add more sections: migrations, async, Core‑ORM mix, performance tips, etc. -->
 
   <!-- References Section -->
-  <section id="references">
+  <details>
+    <summary>references</summary>
     <h2>References</h2>
     <ul>
-      <li><a href="https://docs.sqlalchemy.org/" target="_blank">SQLAlchemy Documentation</a></li>
+      <li><a href="https://docs.sqlalchemy.org/" target="_blank">SQLAlchemy Documentation</a>
+      </li>
     </ul>
-  </section>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup & Verification</h2>
     <p>Install via pip:</p>
     <pre><code>pip install sqlalchemy</code></pre>
-  </section>
+  </details>
 </body>
 
 </html>

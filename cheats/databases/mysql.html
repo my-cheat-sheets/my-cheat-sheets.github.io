@@ -9,14 +9,15 @@
 <body>
   <h1>MySQL & Generic SQL Cheatsheet</h1>
 
-  <section id="basic">
-    <h2>Basic / CRUD & Queries</h2>
-    <ul>
-      <ol><strong>Create DB / Use:</strong>
-        <pre><code>CREATE DATABASE shop;\nUSE shop;</code></pre>
-      </ol>
-      <ol><strong>Create Table:</strong>
-        <pre><code>
+  <details open>
+    <summary>basic</summary>
+      <h2>Basic / CRUD & Queries</h2>
+      <ul>
+        <ol><strong>Create DB / Use:</strong>
+          <pre><code>CREATE DATABASE shop;\nUSE shop;</code></pre>
+        </ol>
+        <ol><strong>Create Table:</strong>
+          <pre><code>
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
@@ -24,54 +25,56 @@ CREATE TABLE products (
   stock INT
 );
         </code></pre>
-      </ol>
-      <ol><strong>Insert:</strong>
-        <pre><code>INSERT INTO products(name, price, stock) VALUES('Pen', 1.25, 100);</code></pre>
-      </ol>
-      <ol><strong>Select / Where:</strong>
-        <pre><code>SELECT name, price FROM products WHERE stock &gt; 0;</code></pre>
-      </ol>
-      <ol><strong>Update:</strong>
-        <pre><code>UPDATE products SET stock = stock - 1 WHERE id = 2;</code></pre>
-      </ol>
-      <ol><strong>Delete:</strong>
-        <pre><code>DELETE FROM products WHERE stock = 0;</code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+        <ol><strong>Insert:</strong>
+          <pre><code>INSERT INTO products(name, price, stock) VALUES('Pen', 1.25, 100);</code></pre>
+        </ol>
+        <ol><strong>Select / Where:</strong>
+          <pre><code>SELECT name, price FROM products WHERE stock &gt; 0;</code></pre>
+        </ol>
+        <ol><strong>Update:</strong>
+          <pre><code>UPDATE products SET stock = stock - 1 WHERE id = 2;</code></pre>
+        </ol>
+        <ol><strong>Delete:</strong>
+          <pre><code>DELETE FROM products WHERE stock = 0;</code></pre>
+        </ol>
+      </ul>
+  </details>
 
-  <section id="advanced">
-    <h2>Advanced Queries</h2>
-    <ul>
-      <ol><strong>JOINs:</strong>
-        <pre><code>
+  <details>
+    <summary>advanced</summary>
+      <h2>Advanced Queries</h2>
+      <ul>
+        <ol><strong>JOINs:</strong>
+          <pre><code>
 SELECT o.id, u.name, o.order_date, p.name
 FROM orders o
 JOIN users u ON o.user_id = u.id
 JOIN products p ON o.product_id = p.id;
         </code></pre>
-      </ol>
-      <ol><strong>Aggregate Functions:</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Aggregate Functions:</strong>
+          <pre><code>
 SELECT category, COUNT(*) AS num, AVG(price) AS avg_price
 FROM products
 GROUP BY category
 HAVING num &gt; 5;
         </code></pre>
-      </ol>
-      <ol><strong>LIMIT & OFFSET:</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>LIMIT & OFFSET:</strong>
+          <pre><code>
 SELECT * FROM products ORDER BY price DESC LIMIT 10 OFFSET 20;
         </code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+      </ul>
+  </details>
 
-  <section id="pro">
-    <h2>Pro / Useful Commands</h2>
-    <ul>
-      <ol><strong>Stored Procedure Example:</strong>
-        <pre><code>
+  <details>
+    <summary>pro</summary>
+      <h2>Pro / Useful Commands</h2>
+      <ul>
+        <ol><strong>Stored Procedure Example:</strong>
+          <pre><code>
 DELIMITER //
 CREATE PROCEDURE AddProduct(IN nm VARCHAR(255), IN pr DECIMAL(10,2))
 BEGIN
@@ -80,34 +83,36 @@ END;
 //
 DELIMITER ;
         </code></pre>
-      </ol>
-      <ol><strong>Transactions (InnoDB):</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Transactions (InnoDB):</strong>
+          <pre><code>
 START TRANSACTION;
 UPDATE accounts SET balance = balance - 500 WHERE id = 1;
 UPDATE accounts SET balance = balance + 500 WHERE id = 2;
 COMMIT;
         </code></pre>
-      </ol>
-      <ol><strong>Create Index:</strong>
-        <pre><code>CREATE INDEX idx_price ON products(price);</code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+        <ol><strong>Create Index:</strong>
+          <pre><code>CREATE INDEX idx_price ON products(price);</code></pre>
+        </ol>
+      </ul>
+  </details>
   <!-- References Section -->
-  <section id="references">
-    <h2>References</h2>
-    <ul>
-      <li><a href="https://dev.mysql.com/doc/" target="_blank">MySQL Documentation</a></li>
-    </ul>
-  </section>
+  <details>
+    <summary>references</summary>
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://dev.mysql.com/doc/" target="_blank">MySQL Documentation</a></li>
+      </ul>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
-    <h2>Setup & Verification</h2>
-    <p>Check if the MySQL client is installed:</p>
-    <pre><code>mysql --version</code></pre>
-  </section>
+  <details open>
+    <summary>setup</summary>
+      <h2>Setup & Verification</h2>
+      <p>Check if the MySQL client is installed:</p>
+      <pre><code>mysql --version</code></pre>
+  </details>
 </body>
 
 </html>

@@ -9,7 +9,8 @@
 <body>
     <h1>JDBC Cheatsheet</h1>
 
-    <section id="basics">
+    <details open>
+        <summary>Basics</summary>
         <h2>Basics</h2>
         <ul>
             <ol><strong>Connection Strings</strong>
@@ -65,13 +66,14 @@ boolean result = pstmt.execute();
                 </code></pre>
             </ol>
         </ul>
-    </section>
 
-    <section id="advanced">
-        <h2>Advanced</h2>
-        <ul>
-            <ol><strong>Processing ResultSet</strong>
-                <pre><code class="language-java">
+
+        <details>
+            <summary>advanced">
+                <h2>Advanced</h2>
+                <ul>
+                    <ol><strong>Processing ResultSet</strong>
+                        <pre><code class="language-java">
 while (rs.next()) {
     int id = rs.getInt("id");
     String name = rs.getString("name");
@@ -79,9 +81,9 @@ while (rs.next()) {
     // String name = rs.getString(2);
 }
                 </code></pre>
-            </ol>
-            <ol><strong>Transactions</strong>
-                <pre><code class="language-java">
+                    </ol>
+                    <ol><strong>Transactions</strong>
+                        <pre><code class="language-java">
 conn.setAutoCommit(false); // Start transaction
 
 try {
@@ -95,9 +97,9 @@ try {
     conn.setAutoCommit(true); // Restore default
 }
                 </code></pre>
-            </ol>
-            <ol><strong>Batch Processing</strong>
-                <pre><code class="language-java">
+                    </ol>
+                    <ol><strong>Batch Processing</strong>
+                        <pre><code class="language-java">
 String sql = "INSERT INTO logs (msg) VALUES (?)";
 PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -108,9 +110,9 @@ for (String msg : messages) {
 
 int[] updates = pstmt.executeBatch();
                 </code></pre>
-            </ol>
-            <ol><strong>Retrieving Generated Keys</strong>
-                <pre><code class="language-java">
+                    </ol>
+                    <ol><strong>Retrieving Generated Keys</strong>
+                        <pre><code class="language-java">
 String sql = "INSERT INTO users (name) VALUES (?)";
 PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 pstmt.setString(1, "Alice");
@@ -122,17 +124,19 @@ if (rs.next()) {
     System.out.println("Inserted ID: " + id);
 }
                 </code></pre>
-            </ol>
-        </ul>
-    </section>
+                    </ol>
+                </ul>
 
-    <section id="references">
-        <h2>References</h2>
-        <ul>
-            <li><a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html" target="_blank">Oracle JDBC
-                    Tutorial</a></li>
-        </ul>
-    </section>
+
+                <details open>
+                    <summary>references</summary>
+                        <h2>References</h2>
+                        <ul>
+                            <li><a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html"
+                                    target="_blank">Oracle JDBC
+                                    Tutorial</a></li>
+                        </ul>
+
 </body>
 
 </html>

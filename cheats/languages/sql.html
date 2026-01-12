@@ -10,19 +10,20 @@
   <h1>SQL Cheatsheet</h1>
 
   <!-- Basic CRUD & Queries -->
-  <section id="basic">
-    <h2>Basic</h2>
-    <ul>
-      <ol><strong>Create / Drop Database</strong>
-        <pre><code>
+  <details open>
+    <summary>basic">
+      <h2>Basic</h2>
+      <ul>
+        <ol><strong>Create / Drop Database</strong>
+          <pre><code>
 CREATE DATABASE company;
 USE company;
 
 DROP DATABASE company;
         </code></pre>
-      </ol>
-      <ol><strong>Create / Drop / Alter Table</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Create / Drop / Alter Table</strong>
+          <pre><code>
 CREATE TABLE employees (
     id INT PRIMARY KEY,
     name VARCHAR(100),
@@ -34,9 +35,9 @@ ALTER TABLE employees ADD COLUMN salary DECIMAL(10,2);
 
 DROP TABLE employees;
         </code></pre>
-      </ol>
-      <ol><strong>Select / Insert / Update / Delete</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Select / Insert / Update / Delete</strong>
+          <pre><code>
 -- Select all columns
 SELECT * FROM employees;
 
@@ -52,9 +53,9 @@ UPDATE employees SET age = 29 WHERE name = 'John';
 -- Delete
 DELETE FROM employees WHERE age < 25;
         </code></pre>
-      </ol>
-      <ol><strong>Filtering & Sorting</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Filtering & Sorting</strong>
+          <pre><code>
 SELECT name, department
 FROM employees
 WHERE department = 'IT' AND age > 25
@@ -62,21 +63,22 @@ ORDER BY age DESC;
 
 SELECT DISTINCT department FROM employees;
         </code></pre>
-      </ol>
-      <ol><strong>Limit / Offset</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Limit / Offset</strong>
+          <pre><code>
 -- PostgreSQL / MySQL / SQLite style:
 SELECT * FROM employees LIMIT 10 OFFSET 5;
 
 -- SQL Server style (T‑SQL):
 SELECT TOP 10 * FROM employees;
         </code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+      </ul>
+  </details>
 
   <!-- Advanced Queries -->
-  <section id="advanced">
+  <details>
+    <summary>advanced</summary>
     <h2>Advanced</h2>
     <ul>
       <ol><strong>JOINs (INNER, LEFT, RIGHT, FULL)</strong>
@@ -131,10 +133,11 @@ ROLLBACK;
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
 
   <!-- Pro / Advanced‑2 Section -->
-  <section id="pro">
+  <details>
+    <summary>pro</summary>
     <h2>Pro / Advanced‑2</h2>
     <ul>
       <ol><strong>Window Functions (PostgreSQL / SQL Server / etc.)</strong>
@@ -202,21 +205,23 @@ SELECT name FROM dept2;
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
   <!-- References Section -->
-  <section id="references">
+  <details>
+    <summary>references</summary>
     <h2>References</h2>
     <ul>
       <li><a href="https://www.w3schools.com/sql/" target="_blank">W3Schools SQL Tutorial</a></li>
       <li><a href="https://sqlzoo.net/" target="_blank">SQLZoo (Interactive SQL)</a></li>
     </ul>
-  </section>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup & Verification</h2>
     <p>SQL is used with relational databases. Install MySQL, PostgreSQL, or SQLite to run queries.</p>
-  </section>
+  </details>
 </body>
 
 </html>

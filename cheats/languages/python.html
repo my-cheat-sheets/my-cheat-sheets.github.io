@@ -10,23 +10,24 @@
   <h1>Python Cheatsheet</h1>
 
   <!-- Basic Section -->
-  <section id="basic">
-    <h2>Basic</h2>
-    <ul>
-      <ol><strong>Hello World</strong>
-        <pre><code>print("Hello, World!")</code></pre>
-      </ol>
-      <ol><strong>Variables & Data Types</strong>
-        <pre><code>
+  <details open>
+    <summary>basic">
+      <h2>Basic</h2>
+      <ul>
+        <ol><strong>Hello World</strong>
+          <pre><code>print("Hello, World!")</code></pre>
+        </ol>
+        <ol><strong>Variables & Data Types</strong>
+          <pre><code>
 x = 10              # int
 name = "Alice"      # str
 pi = 3.14           # float
 is_ready = True     # bool
 nothing = None      # NoneType
         </code></pre>
-      </ol>
-      <ol><strong>Basic Math & Operators</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Basic Math & Operators</strong>
+          <pre><code>
 a = 5
 b = 2
 print(a + b)   # 7
@@ -37,9 +38,9 @@ print(a // b)  # 2   (integer division)
 print(a % b)   # 1   (modulus)
 print(a ** b)  # 25  (power)
         </code></pre>
-      </ol>
-      <ol><strong>Conditional Statements</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Conditional Statements</strong>
+          <pre><code>
 if x > 0:
     print("Positive")
 elif x == 0:
@@ -47,9 +48,9 @@ elif x == 0:
 else:
     print("Negative")
         </code></pre>
-      </ol>
-      <ol><strong>Loops — for / while</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Loops — for / while</strong>
+          <pre><code>
 # for loop
 for i in range(5):
     print(i)
@@ -60,26 +61,28 @@ while count < 3:
     print("Count:", count)
     count += 1
         </code></pre>
-      </ol>
-      <ol><strong>Functions</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Functions</strong>
+          <pre><code>
 def greet(name):
     print("Hello", name)
 
 greet("Bob")
         </code></pre>
-      </ol>
-      <ol><strong>Input / Output</strong>
-        <pre><code>
+        </ol>
+        <ol><strong>Input / Output</strong>
+          <pre><code>
 name = input("Enter your name: ")
 print("Hi, " + name)
         </code></pre>
-      </ol>
-    </ul>
-  </section>
+        </ol>
+      </ul>
+  </details>
 
   <!-- Advanced Section -->
-  <section id="advanced">
+  <details>
+    <summary>advanced</summary>
+
     <h2>Advanced</h2>
     <ul>
       <ol><strong>Lists, Tuples, Dictionaries, Sets</strong>
@@ -175,10 +178,11 @@ print(date.today())
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
 
   <!-- Pro / Advanced-2 Section -->
-  <section id="pro">
+  <details>
+    <summary>pro</summary>
     <h2>Pro / Advanced‑2</h2>
     <ul>
       <ol><strong>Generators & Generator Expressions</strong>
@@ -258,22 +262,24 @@ for key, value in d.items():
         </code></pre>
       </ol>
     </ul>
-  </section>
+  </details>
   <!-- References Section -->
-  <section id="references">
+  <details>
+    <summary>references</summary>
     <h2>References</h2>
     <ul>
       <li><a href="https://docs.python.org/3/" target="_blank">Python Official Documentation</a></li>
       <li><a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python Tutorial</a></li>
     </ul>
-  </section>
+  </details>
 
   <!-- Setup Section -->
-  <section id="setup">
+  <details open>
+    <summary>setup</summary>
     <h2>Setup & Verification</h2>
     <p>Check if Python is installed:</p>
     <pre><code>python --version</code></pre>
-  </section>
+  </details>
 </body>
 
 </html>

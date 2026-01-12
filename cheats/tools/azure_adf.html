@@ -9,7 +9,8 @@
 <body>
     <h1>Azure Data Factory (ADF) Cheatsheet</h1>
 
-    <section id="basics">
+    <details open>
+        <summary>Basics</summary>
         <h2>Core Concepts</h2>
         <ul>
             <ol><strong>Pipeline</strong>
@@ -28,92 +29,97 @@
                 <p>Compute infrastructure used by ADF (Azure, Self-Hosted, SSIS-Azure).</p>
             </ol>
         </ul>
-    </section>
 
-    <section id="activities">
-        <h2>Common Activities</h2>
-        <ul>
-            <ol><strong>Copy Data</strong>
-                <pre><code>
+
+        <details>
+            <summary>activities">
+                <h2>Common Activities</h2>
+                <ul>
+                    <ol><strong>Copy Data</strong>
+                        <pre><code>
 Source: Blob, SQL, API, etc.
 Sink: Blob, SQL, Lake, etc.
 Mapping: Explicit or Implicit
                 </code></pre>
-            </ol>
-            <ol><strong>Control Flow</strong>
-                <ul>
-                    <li><strong>Execute Pipeline</strong>: Invoke another pipeline.</li>
-                    <li><strong>ForEach</strong>: Loop over a collection.</li>
-                    <li><strong>If Condition</strong>: Branching logic.</li>
-                    <li><strong>Wait</strong>: Pause execution.</li>
-                    <li><strong>Web</strong>: Call REST API.</li>
+                    </ol>
+                    <ol><strong>Control Flow</strong>
+                        <ul>
+                            <li><strong>Execute Pipeline</strong>: Invoke another pipeline.</li>
+                            <li><strong>ForEach</strong>: Loop over a collection.</li>
+                            <li><strong>If Condition</strong>: Branching logic.</li>
+                            <li><strong>Wait</strong>: Pause execution.</li>
+                            <li><strong>Web</strong>: Call REST API.</li>
+                        </ul>
+                    </ol>
                 </ul>
-            </ol>
-        </ul>
-    </section>
 
-    <section id="expressions">
-        <h2>Expressions & Parameters</h2>
-        <ul>
-            <ol><strong>System Variables</strong>
-                <pre><code>
+
+                <details>
+                    <summary>expressions">
+                        <h2>Expressions & Parameters</h2>
+                        <ul>
+                            <ol><strong>System Variables</strong>
+                                <pre><code>
 @pipeline().DataFactory
 @pipeline().Pipeline
 @pipeline().RunId
 @pipeline().TriggerTime
                 </code></pre>
-            </ol>
-            <ol><strong>Parameters</strong>
-                <pre><code>
+                            </ol>
+                            <ol><strong>Parameters</strong>
+                                <pre><code>
 @pipeline().parameters.myParam
                 </code></pre>
-            </ol>
-            <ol><strong>Variables</strong>
-                <pre><code>
+                            </ol>
+                            <ol><strong>Variables</strong>
+                                <pre><code>
 @variables('myVar')
                 </code></pre>
-            </ol>
-            <ol><strong>Functions</strong>
-                <pre><code>
+                            </ol>
+                            <ol><strong>Functions</strong>
+                                <pre><code>
 @concat('a', 'b')
 @formatDateTime(utcnow(), 'yyyy-MM-dd')
 @equals(variables('status'), 'Succeeded')
 @coalesce(activity('Act1').output.value, 'default')
                 </code></pre>
-            </ol>
-            <ol><strong>Activity Output</strong>
-                <pre><code>
+                            </ol>
+                            <ol><strong>Activity Output</strong>
+                                <pre><code>
 @activity('LookupActivity').output.count
 @activity('LookupActivity').output.value[0].ColumnName
                 </code></pre>
-            </ol>
-        </ul>
-    </section>
+                            </ol>
+                        </ul>
 
-    <section id="triggers">
-        <h2>Triggers</h2>
-        <ul>
-            <ol><strong>Schedule Trigger</strong>
-                <p>Wall-clock schedule (e.g., every day at 8 AM).</p>
-            </ol>
-            <ol><strong>Tumbling Window</strong>
-                <p>Operates on time slices, supports backfill and dependency.</p>
-            </ol>
-            <ol><strong>Storage Event</strong>
-                <p>Triggered by Blob Created/Deleted events (Event Grid).</p>
-            </ol>
-        </ul>
-    </section>
 
-    <section id="references">
-        <h2>References</h2>
-        <ul>
-            <li><a href="https://learn.microsoft.com/en-us/azure/data-factory/" target="_blank">Azure Data Factory
-                    Documentation</a></li>
-            <li><a href="https://learn.microsoft.com/en-us/azure/data-factory/control-flow-expression-language-functions"
-                    target="_blank">Expression Language Guide</a></li>
-        </ul>
-    </section>
+                        <details>
+                            <summary>triggers">
+                                <h2>Triggers</h2>
+                                <ul>
+                                    <ol><strong>Schedule Trigger</strong>
+                                        <p>Wall-clock schedule (e.g., every day at 8 AM).</p>
+                                    </ol>
+                                    <ol><strong>Tumbling Window</strong>
+                                        <p>Operates on time slices, supports backfill and dependency.</p>
+                                    </ol>
+                                    <ol><strong>Storage Event</strong>
+                                        <p>Triggered by Blob Created/Deleted events (Event Grid).</p>
+                                    </ol>
+                                </ul>
+
+
+                                <details open>
+                                    <summary>references">
+                                        <h2>References</h2>
+                                        <ul>
+                                            <li><a href="https://learn.microsoft.com/en-us/azure/data-factory/"
+                                                    target="_blank">Azure Data Factory
+                                                    Documentation</a></li>
+                                            <li><a href="https://learn.microsoft.com/en-us/azure/data-factory/control-flow-expression-language-functions"
+                                                    target="_blank">Expression Language Guide</a></li>
+                                        </ul>
+
 </body>
 
 </html>
