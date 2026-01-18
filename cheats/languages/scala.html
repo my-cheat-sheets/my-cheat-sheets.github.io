@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scala Complete Cheatsheet</title>
+</head>
+
+<body>
+    <h1>🎯 Scala Complete Cheatsheet</h1>
+    
+    <details open>
+        <summary>🚀 Basics & Syntax</summary>
+        <ul>
+            <li>Variable Declaration - Immutable
+                <pre>de>val msg = "Hello, world!"
+val msg: String = "Hello, world!"
+val hex = 0xFF  // Hexadecimal</code></pre>
+            </li>
+            <li>Variable Declaration - Mutable
+                <pre>de>var greets = "Hello, world!"
+var greets: String = "Hello, world!"</code></pre>
+            </li>
+            <li>Lazy Initialization
+                <pre>de>lazy val x = { println("initializing x"); done }</code></pre>
+            </li>
+            <li>String Literals
+                <pre>de>val s = "its you"  // Regular string
+val s = """Its you"""  // Raw string (preserves formatting)
+val escaped = "hello\nworld"  // Escape sequences</code></pre>
+            </li>
+            <li>Basic Types
+                <pre>de>// Type                Range
+Byte                -2^7 to 2^7-1 (8-bit signed)
+Short               -2^15 to 2^15-1 (16-bit signed)
+Int                 -2^31 to 2^31-1 (32-bit signed)
+Long                -2^63 to 2^63-1 (64-bit signed)
+Char                0 to 2^16-1 (16-bit unsigned Unicode)
+Float               32-bit IEEE 754
+Double              64-bit IEEE 754
+Boolean             true or false
+Unit                Equivalent to void</code></pre>
+            </li>
+            <li>Numeric Literals
+                <pre>de>val dec = 31              // Decimal Int
+val long = 31L            // Long
+val float = 1.234F        // Float
+val double = 1.2345       // Double
+val sci = 1.234e4         // Scientific notation
+val hex = 0xFF            // Hexadecimal</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>📋 Imports & Packages</summary>
+        <ul>
+            <li>Package Declaration
+                <pre>de>package com.xtech.scala
+package scala {
+  class A
+  package util {
+    class B
+  }
+}</code></pre>
+            </li>
+            <li>Import Statements
+                <pre>de>import java.awt._           // All classes under java.awt
+import java.io.File         // Specific import
+import java.io.File._       // Import all File static methods
+import java.util.{Map, HashMap}  // Multiple specific imports
+import java.math.BigDecimal.{ONE => JAVA_ONE}  // Rename import
+import java.math.BigDecimal.{ONE, ZERO => JAVA_ZERO}  // Mix imports</code></pre>
+            </li>
+            <li>Import Notes
+                <pre>de>// Import statements are relative, not absolute
+// To create absolute path, start with _root_
+import _root_.scala.collection.jcl</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🎨 Operators</summary>
+        <ul>
+            <li>Arithmetic Operators
+                <pre>de>0 max 5        // Returns 5
+0 min 5        // Returns 0
+-2.7 abs       // Returns 2.7
+-2.7 round     // Returns -3L
+1.5 isInfinity // Returns false
+1.00 isInfinity // Returns true</code></pre>
+            </li>
+            <li>Range Operators
+                <pre>de>4 to 6         // Range(4,5,6) - inclusive
+4 until 6      // Range(4,5) - exclusive</code></pre>
+            </li>
+            <li>String Operations
+                <pre>de>"nick" capitalize     // Returns "Nick"
+"nicolas" drop 2      // Returns "colas"</code></pre>
+            </li>
+            <li>Relational Operators
+                <pre>de>==   // Equality (value and primitive type)
+!=   // Inequality
+<, >, <=, >=</code></pre>
+            </li>
+            <li>Logical Operators
+                <pre>de>&& || !   // and, or, not</code></pre>
+            </li>
+            <li>Bitwise Operators
+                <pre>de>&, |, ^, ~  // and, or, xor, inv
+<<, >>, >>> // left shift, right shift, unsigned right shift</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🔧 Functions</summary>
+        <ul>
+            <li>Function Definition
+                <pre>de>def add(x: Int, y: Int): Int = x + y
+def max2(x: Int, y: Int): Int = if (x > y) x else y
+def echo(args: String*) = {
+  for (arg <- args) println(arg)
+}
+def getIP(name: String): Option[InetAddress] = {
+  try { Some(InetAddress.getByName(name)) }
+  catch { case _: UnknownHostException => None }
+}</code></pre>
+            </li>
+            <li>Function Literals
+                <pre>de>numbers.filter(x => x > 0)   // Lambda with parameter
+numbers.filter(_ > 0)         // Placeholder syntax
+someNumbers.foreach(println)  // Method reference</code></pre>
+            </li>
+            <li>Partially Applied Functions
+                <pre>de>def sum(a: Int, b: Int, c: Int) = a + b + c
+val b = sum(1, _: Int, 3)
+b(5)  // Calls sum(1, 5, 3), returns 9</code></pre>
+            </li>
+            <li>Named Parameters & Defaults
+                <pre>de>def draw(x: Int = 0, y: Int = 0, dblBuff: Boolean = false) = ...
+draw(dblBuff = true, x = 10, y = 20)</code></pre>
+            </li>
+            <li>Currying
+                <pre>de>def multiplier(i: Int)(factor: Int) = i * factor
+val byFive = multiplier(5)
+val result = byFive(10)  // Returns 50</code></pre>
+            </li>
+            <li>By-Name Parameters
+                <pre>de>def myWhile(condition: Boolean)(f: => Unit) = {
+  if (condition) {
+    f
+    myWhile(condition)(f)
+  }
+}</code></pre>
+            </li>
+            <li>Implicit Conversions
+                <pre>de>implicit def intToString(x: Int) = x.toString
+// Compiler can now convert Int to String automatically</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>📦 Tuples</summary>
+        <ul>
+            <li>Creating Tuples
+                <pre>de>val nena = (99, "Luftballons", 1983)
+println(nena._1)   // 99
+println(nena._2)   // Luftballons
+println(nena._3)   // 1983
+val (a, b, c) = nena  // Pattern matching</code></pre>
+            </li>
+            <li>Tuple Operations
+                <pre>de>val t = (1, "hello", 3.14)
+t.productIterator  // Iterate over elements
+t.toList           // Convert to list</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🏛️ Classes & Objects</summary>
+        <ul>
+            <li>Simple Class Definition
+                <pre>de>class Checksum {
+  private var sum = 0
+  def add(b: Byte) { sum += b }
+  def checksum(): Int = ~(sum & 0xFF) + 1
+  override def toString = "Checksum(" + checksum() + ")"
+}</code></pre>
+            </li>
+            <li>Primary Constructor
+                <pre>de>class Rational(n: Int, d: Int) {
+  require(d != 0)
+  val numer: Int = n
+  val denom: Int = d
+  override def toString = numer + "/" + denom
+}</code></pre>
+            </li>
+            <li>Auxiliary Constructor
+                <pre>de>class Rational(n: Int, d: Int) {
+  require(d != 0)
+  def this(n: Int) = this(n, 1)  // Auxiliary constructor
+}</code></pre>
+            </li>
+            <li>Singleton Object
+                <pre>de>object Book {
+  val favorites = "Java Puzzlers, Design Patterns"
+  def apply(title: String) = {
+    println("Book construction ...")
+    new Book(title)
+  }
+}
+
+val book = Book("Scala Book")  // Uses apply method</code></pre>
+            </li>
+            <li>Companion Object
+                <pre>de>// Companion object shares name with class
+class Account(val id: Int)
+object Account {
+  def apply(id: Int) = new Account(id)
+}</code></pre>
+            </li>
+            <li>Private Constructor
+                <pre>de>class Rational private(n: Int, d: Int)</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🎭 Traits & Inheritance</summary>
+        <ul>
+            <li>Trait Definition
+                <pre>de>trait Saxo {
+  def play = println("Nice sound!")
+}
+
+class Alto extends Saxo
+class Instrument extends Alto {
+  override def toString = "Alto"
+}</code></pre>
+            </li>
+            <li>Mixing Traits
+                <pre>de>class Baryton extends Instrument
+val baryton = new Baryton with Saxo  // Mix trait at instantiation</code></pre>
+            </li>
+            <li>Ordered Trait
+                <pre>de>class Rational(n: Int, d: Int) extends Ordered[Rational] {
+  def compare(that: Rational) = 
+    this.numer * that.denom - that.numer * this.denom
+}
+// Now can use <, >, <=, >= operators</code></pre>
+            </li>
+            <li>Abstract Classes
+                <pre>de>abstract class Document {
+  def footNotes: Array[String]  // Abstract method
+  var nbOfPages: Int            // Abstract field
+  def type paper: String        // Abstract type
+}
+
+class Pamphlet extends Document {
+  def footNotes = Array()
+  var nbOfPages = 5
+}</code></pre>
+            </li>
+            <li>Inheritance
+                <pre>de>class A(param: String) extends B(param: String)</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🎪 Pattern Matching</summary>
+        <ul>
+            <li>Basic Match Expression
+                <pre>de>firstArg match {
+  case "salt"  => println("pepper")
+  case "chips" => println("salsa")
+  case "eggs"  => println("bacon")
+  case _       => println("huh?")
+}</code></pre>
+            </li>
+            <li>Constant Pattern
+                <pre>de>def describe(x: Any) = x match {
+  case 1         => "one"
+  case true      => "truth"
+  case "hello"   => "Ciao hi!"
+  case Nil       => "empty list"
+  case something => "something else"
+}</code></pre>
+            </li>
+            <li>Variable Pattern
+                <pre>de>expr match {
+  case 0       => "zero"
+  case 1       => "one"
+  case _ => x  => "not zero: " + x
+}</code></pre>
+            </li>
+            <li>Sequence Pattern
+                <pre>de>expr match {
+  case List(0, _, _)        => "found it"
+  case List(0, _*)          => "found it with more"
+  case _                     => "not found"
+}</code></pre>
+            </li>
+            <li>Tuple Pattern
+                <pre>de>def tupleDemo(expr: Any) = expr match {
+  case (a, b, c) => println(a + b + c)
+  case _         => "not a tuple"
+}</code></pre>
+            </li>
+            <li>Typed Pattern
+                <pre>de>def generalSize(x: Any) = x match {
+  case s: String => s.length
+  case m: Map    => m.size
+  case _         => -1
+}</code></pre>
+            </li>
+            <li>Variable-Binding Pattern
+                <pre>de>item match {
+  case id @ (_: String, p @ Person(_, _, Manager))  => "manager"
+  case id @ (_: String, p @ Person(_, _, _))        => "other"
+}</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🎁 Case Classes</summary>
+        <ul>
+            <li>Case Class Definition
+                <pre>de>case class Var(name: String)
+
+// Automatically generates:
+// 1. apply method (no need for new)
+// 2. All constructor arguments as fields
+// 3. Natural toString, hashCode, equals
+
+val v = Var("x")
+v.name</code></pre>
+            </li>
+            <li>Pattern Matching with Case Classes
+                <pre>de>def matchOn(shape: Shape) = shape match {
+  case Circle(center, radius) => 
+    println("Circle: center=" + center + " radius=" + radius)
+  case Rectangle(ll, h, w) => 
+    println("Rect: ll=" + ll + " h=" + h + " w=" + w)
+  case _                  => println("Unknown")
+}</code></pre>
+            </li>
+            <li>Copy Method
+                <pre>de>case class A(x: T)
+val a1 = A(1)
+val a2 = a1.copy(x = 2)  // Creates modified copy</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>📚 Collections</summary>
+        <ul>
+            <li>Immutable List
+                <pre>de>val oneTwo = List(1, 2)
+val threeFour = List(3, 4)
+val oneTwoThree = oneTwo ::: threeFour  // Concatenate
+val twoThreeFour = 2 :: threeFour       // Prepend (cons)
+
+val nums = List(1, 2, 3)
+nums.head        // 1
+nums.tail        // List(2, 3)
+nums.init        // List(1, 2)
+nums.last        // 3
+nums.reverse     // List(3, 2, 1)
+nums.length      // 3
+nums.contains(2) // true</code></pre>
+            </li>
+            <li>List Operations
+                <pre>de>val truth = List("Fly", "is", "fun")
+truth.map(s => s + "!")      // Map
+truth.filter(_.length == 3)  // Filter
+truth.exists(_.startsWith("F")) // Exists
+truth.foldLeft("Yes")((_ + " " + _))</code></pre>
+            </li>
+            <li>Immutable Set
+                <pre>de>var jetSet = Set("Boeing", "Airbus")
+jetSet += "Lear"
+println(jetSet.contains("Cessna"))</code></pre>
+            </li>
+            <li>Immutable Map
+                <pre>de>var hashMap = HashMap(1 -> "one", 2 -> "two")
+println(hashMap.get(1))</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🌟 Arrays & Control</summary>
+        <ul>
+            <li>Array Creation
+                <pre>de>val greetStrings = new Array[String](3)
+val greetStrings = Array("Hello", ",", "world!")
+greets(0) = "Hello"
+println(greets(0))</code></pre>
+            </li>
+            <li>Control Structures - For
+                <pre>de>for (arg <- args) println(arg)
+for (i <- 0 to 5) print(i)      // 012345
+for (i <- 0 until 5) print(i)   // 01234
+for (file <- files if file.isFile) println(file)</code></pre>
+            </li>
+            <li>Try-Catch-Finally
+                <pre>de>try {
+  val f = new FileReader("input.txt")
+} catch {
+  case ex: FileNotFoundException => println("missing")
+  case ex: IOException => println("error")
+} finally {
+  f.close()
+}</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>🗃️ XML & Serialization</summary>
+        <ul>
+            <li>XML Literals
+                <pre>de>val myXML = <html>
+  <body id="bID">Some Text</body>
+</html>
+myXML.body
+myXML.body.text</code></pre>
+            </li>
+            <li>Save/Load XML
+                <pre>de>scala.xml.XML.save("pa28.xml", node, "UTF-8", true, null)
+val loadnode = xml.XML.loadFile("pa28.xml")</code></pre>
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>🔧 Setup & Verification</summary>
+        <h2>Setup & Verification</h2>
+        <ul>
+            <li>Check Scala Installation
+                <pre>de>scala -version</code></pre>
+            </li>
+            <li>Run Scala REPL
+                <pre>de>scala</code></pre>
+            </li>
+            <li>Compile Scala File
+                <pre>de>scalac HelloWorld.scala</code></pre>
+            </li>
+            <li>Run Compiled Class
+                <pre>de>scala HelloWorld</code></pre>
+            </li>
+        </ul>
+    </details>
+
+    <details open>
+        <summary>📖 References</summary>
+        <h2>References</h2>
+        <ul>
+            <button><a href="https://www.scala-lang.org/" target="_blank">Official Scala Website</a></button>
+            <button><a href="https://docs.scala-lang.org/" target="_blank">Scala Documentation</a></button>
+            <button><a href="https://scala-lang.org/api/current/" target="_blank">Scala API Reference</a></button>
+            <button><a href="https://www.coursera.org/learn/progfun1" target="_blank">Functional Programming Principles in Scala</a></button>
+            <button><a href="https://homepage.cs.uiowa.edu/~tinelli/classes/022/Fall13/Notes/scala-quick-reference.pdf" title="Scala Quick Reference" target="_blank">Scala Quick Reference</a></button>
+        </ul>
+    </details>
+
+
+</body>
+
+</html>

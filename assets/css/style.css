@@ -1248,3 +1248,74 @@ details>*:not(summary) {
   padding: 2px 6px;
   border-radius: 4px;
 }
+
+/* ============================ */
+/* References Section Buttons   */
+/* ============================ */
+/* 
+   Target links inside lists that immediately follow an h2 inside a details element.
+   This specific structure is used for the "References" sections.
+*/
+details h2 + ul {
+  list-style: none; /* Remove default bullets if any */
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+details h2 + ul li,
+details h2 + ul ol {
+  margin: 0;
+  padding: 0;
+  display: contents; /* Let the links participate in the flex container if possible, or just be wrappers */
+}
+
+/* Handle both standard li > a and the custom ol > a seen in some files */
+details h2 + ul li a,
+details h2 + ul ol a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--bullet-color); /* Use the accent color for border */
+  border-radius: 6px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Hover state */
+details h2 + ul li a:hover,
+details h2 + ul ol a:hover {
+  background-color: var(--bullet-color);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+
+/* Add a link icon */
+details h2 + ul li a::before,
+details h2 + ul ol a::before {
+  content: "🔗";
+  margin-right: 6px;
+  font-size: 0.9em;
+  display: inline-block;
+}
+
+/* Dark mode adjustments */
+.dark-mode details h2 + ul li a,
+.dark-mode details h2 + ul ol a {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+}
+
+.dark-mode details h2 + ul li a:hover,
+.dark-mode details h2 + ul ol a:hover {
+  background-color: var(--bullet-color);
+  border-color: var(--bullet-color);
+  color: #fff;
+}
