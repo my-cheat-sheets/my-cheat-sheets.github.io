@@ -311,14 +311,23 @@ def gold_metrics():
     </details>
 
     <details>
-        <summary>🔗 Reference Links & CLI</summary>
+        <summary>Tips & Tricks</summary>
+        <h2>Cost of single job run</h2>
+        <pre>
+            <code>
+                select sum(x.cost) as cost_in_dollar from ( 
+                    select u.usage_quantity, p.price, u.usage_quantity * p.price as cost from (
+                        select usage_start_time, usage_end_time, usage_quantity, usage_unit, sku_name 
+                        from system.billing.usage where usage_metadata.job_run_id = '481719574637711') u
+                        join ( select pricing.effective_list.default as price, sku_name 
+                        from system.billing.list_prices where price_end_time is null ) p on u.sku_name = p.sku_name) x
+            </code>
+        </pre>
+    </details>
+
+    <details>
+        <summary> CLI</summary>
         <ul>
-            <li>Official Docs
-                <pre><code>https://docs.databricks.com/en/delta-live-tables/index.html</code></pre>
-            </li>
-            <li>API Reference
-                <pre><code>https://docs.databricks.com/en/dev-tools/api/latest/unity-catalog/pipelines.html</code></pre>
-            </li>
             <li>CLI
                 <pre><code>pip install databricks-dlt
 databricks dlt --version</code></pre>
@@ -335,21 +344,22 @@ GitHub Actions / GitLab CI templates available</code></pre>
         </ul>
     </details>
 
-    <!-- References Section -->
-    <details>
-        <summary>references">
-            <h2>References</h2>
-            <ul>
-                <li><a href="https://docs.databricks.com/" target="_blank">Databricks Documentation</a></li>
-            </ul>
-    </details>
-
     <!-- Setup Section -->
-    <details open>
+    <details >
         <summary>setup</summary>
         <h2>Setup & Verification</h2>
         <p>Databricks is a cloud platform. Access it via your company's workspace URL.</p>
     </details>
+
+    <!-- References Section -->
+    <details open>
+        <summary>references</summary>
+            <h2>References</h2>
+            <button><a href="https://docs.databricks.com/" target="_blank">Databricks Documentation</a></button>
+            <button><a href="https://docs.databricks.com/en/delta-live-tables/index.html" target="_blank" rel="noopener noreferrer">Delta Live Tables Documentation</a></button>
+            <button><a href="https://docs.databricks.com/en/dev-tools/api/latest/unity-catalog/pipelines.html" target="_blank" rel="noopener noreferrer"></a></button>
+    </details>
+
 </body>
 
 </html>

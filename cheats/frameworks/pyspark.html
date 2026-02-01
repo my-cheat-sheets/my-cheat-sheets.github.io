@@ -78,9 +78,9 @@ df.write.mode("overwrite").json("output.json")</code></ol>
             <ol>JDBC (Database)<code>df = spark.read \
     .format("jdbc") \
     .option("url", "jdbc:postgresql://host/db") \
-    .option("dbtable", "table") \
     .option("user", "user") \
     .option("password", "pass") \
+    .option("dbtable", "table") \ # query or table name
     .load()</code></ol>
             <ol>All Formats<code># Read
 spark.read.format("avro").load("data.avro")
@@ -737,6 +737,7 @@ df.unpersist()</code></ol>
                 target="_blank">
                 Top 10 PySpark Optimizations
             </a></button>
+        <button><a href="https://www.sparkplayground.com/" target="_blank">Spark Playground</a></button>
 
     </details>
 </body>
